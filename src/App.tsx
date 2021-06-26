@@ -10,8 +10,9 @@ function App() {
     setIsLoading(true)
     fetch(`${window.location.origin}/data.csv`)
       .then((res) => res.text())
-      .then((data) => setData(data.split("\n")), setIsLoading(false))
+      .then((data : any) => setData(data.split("\n")))
       .catch((err) => console.log(err));
+       setIsLoading(false)
   }, []);
 
   return (

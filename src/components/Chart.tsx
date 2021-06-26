@@ -1,13 +1,13 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-const Chart = ({ data }) => {
-  const alcohol = [];
-  const malicAcid = [];
-  const Hue = [];
-  const colorIntensity = [];
+const Chart = ({ data}: any) => {
+  const alcohol : (string|number)[] = [];
+  const malicAcid : (string|number)[] = [];
+  const Hue : (string|number)[] = [];
+  const colorIntensity : (string|number)[] = [];
 
-  data.forEach((item) => {
+  data.forEach((item : string) => {
     const val = item.split(",");
 
     alcohol.push(val[1]);
@@ -20,19 +20,19 @@ const Chart = ({ data }) => {
   const class2MalicAcid = malicAcid.slice(59, 130);
   const class3MalicAcid = malicAcid.slice(130);
 
-  // getting average of all 3 class of malic acids by adding and then dividing it by number of values belonging to that class and later pushing it into the array for plotting
+  // getting average of all 3 class of malic acids by adding and then dividing it by number of specimens belonging to that class and later pushing it into the array for plotting
 
-  const class1average = [];
-  class1MalicAcid.forEach((item) => class1average.push(+item));
-  const Average1 = (class1average.reduce((a, b) => a + b, 0) / 59).toFixed(2);
+  const class1average : (string|number)[] = [];
+  class1MalicAcid.forEach((item : any) => class1average.push(+item));
+  const Average1 = (class1average.reduce((a : any, b : any) => a + b, 0) / 59).toFixed(2);
 
-  const class2average = [];
-  class2MalicAcid.forEach((item) => class2average.push(+item));
-  const Average2 = (class2average.reduce((a, b) => a + b, 0) / 71).toFixed(2);
+  const class2average : (string|number)[] = [];
+  class2MalicAcid.forEach((item : any) => class2average.push(+item));
+  const Average2 = (class2average.reduce((a: any, b : any) => a + b, 0) / 71).toFixed(2);
 
-  const class3average = [];
-  class3MalicAcid.forEach((item) => class3average.push(+item));
-  const Average3 = (class3average.reduce((a, b) => a + b, 0) / 48).toFixed(2);
+  const class3average : (string|number)[] = [];
+  class3MalicAcid.forEach((item : any) => class3average.push(+item));
+  const Average3 = (class3average.reduce((a : any, b : any) => a + b, 0) / 48).toFixed(2);
 
   for (var i = 0; i <= 59; i++) {
     malicAcid[i] = Average1;
@@ -61,12 +61,16 @@ const Chart = ({ data }) => {
         data: malicAcid,
         type: "bar",
         showBackground: true,
+        smooth: true,
         backgroundStyle: {
           color: "rgba(180, 180, 180, 0.2)",
         },
       },
     ],
     color: "#fc8452",
+    tooltip: {
+      trigger: "axis",
+    },
   };
 
   // converting data in to the required format for the plotting of scattered plot chart
@@ -86,9 +90,13 @@ const Chart = ({ data }) => {
         data: scatterPlotData,
 
         type: "scatter",
+        smooth: true,
       },
     ],
     color: "#fc8452",
+    tooltip: {
+      trigger: "axis",
+    }
   };
 
   return (
