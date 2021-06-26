@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import Chart from "./components/Chart";
+
 
 function App() {
+  const [data, setData] = useState([]);
+  const [isLoading,setIsLoading] = useState(true)
+  useEffect(() => {
+    setIsLoading(true)
+    fetch(`${window.location.origin}/data.csv`)
+      .then((res) => res.text())
+      .then((data) => setData(data.split("\n")), setIsLoading(false))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h4>manufac-data-visualization-assignment</h4>
+      {isLoading && <h1>Loading...Please wait!</h1>}
+      <Chart data={data} />
+      
     </div>
   );
 }
