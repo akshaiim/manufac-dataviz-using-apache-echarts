@@ -1,27 +1,47 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
+
 const Chart = ({ data}: any) => {
   const alcohol : (string|number)[] = [];
   const malicAcid : (string|number)[] = [];
   const Hue : (string|number)[] = [];
   const colorIntensity : (string|number)[] = [];
+  const classCount : (string|number)[] = [];
 
   data.forEach((item : string) => {
     const val = item.split(",");
-
+    classCount.push(val[0])
     alcohol.push(val[1]);
     malicAcid.push(val[2]);
     colorIntensity.push(val[10]);
     Hue.push(val[11]);
   });
+ 
 
 
-  // getting values of alcohol and malic acids corresponding to each class
+  // calculating no of class instances and their range
 
-  const class1MalicAcid = malicAcid.slice(0, 59);
-  const class2MalicAcid = malicAcid.slice(59, 130);
-  const class3MalicAcid = malicAcid.slice(130);
+
+  let class1Count = 0;
+  let class2Count = 0;
+  let class3Count = 0;
+
+  classCount.forEach(item=> item == "1" ? class1Count += 1 : item == '2' ? class2Count += 1 : class3Count += 1)
+
+// console.log(`${class1Count},${class2Count},${class3Count}`)
+ 
+  let class1SliceRange = class1Count;
+  let class2SliceRange = class1Count + class2Count;
+  let class3SliceRange = class1Count + class2Count + class3Count;
+
+
+
+   // getting values of alcohol and malic acids corresponding to each class
+
+  const class1MalicAcid = malicAcid.slice(0, class1SliceRange);
+  const class2MalicAcid = malicAcid.slice(class1SliceRange, class2SliceRange);
+  const class3MalicAcid = malicAcid.slice(class2SliceRange,class3SliceRange);
 
   // const class1Alcohol = alcohol.slice(0, 59);
   // const class2Alcohol = alcohol.slice(59, 130);
