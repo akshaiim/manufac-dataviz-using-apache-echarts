@@ -23,9 +23,9 @@ const Chart = ({ data}: any) => {
   const class2MalicAcid = malicAcid.slice(59, 130);
   const class3MalicAcid = malicAcid.slice(130);
 
-  const class1Alcohol = alcohol.slice(0, 59);
-  const class2Alcohol = alcohol.slice(59, 130);
-  const class3Alcohol = alcohol.slice(130);
+  // const class1Alcohol = alcohol.slice(0, 59);
+  // const class2Alcohol = alcohol.slice(59, 130);
+  // const class3Alcohol = alcohol.slice(130);
   
 
   // getting average of all 3 class of malic acids and alcohol by adding and then dividing it by number of specimens belonging to that class and later pushing it into the array for plotting
@@ -43,17 +43,17 @@ const Chart = ({ data}: any) => {
   const Averageclass3Malic = (class3Malicaverage.reduce((a : any, b : any) => a + b, 0) / 48).toFixed(2);
 
 
-  const class1Alcoholaverage : (string|number)[] = [];
-  class1Alcohol.forEach((item : any) => class1Alcoholaverage.push(+item));
-  const Averageclass1Alcohol = (class1Alcoholaverage.reduce((a : any, b : any) => a + b, 0) / 59).toFixed(2);
+  // const class1Alcoholaverage : (string|number)[] = [];
+  // class1Alcohol.forEach((item : any) => class1Alcoholaverage.push(+item));
+  // const Averageclass1Alcohol = (class1Alcoholaverage.reduce((a : any, b : any) => a + b, 0) / 59).toFixed(2);
 
-  const class2Alcoholaverage : (string|number)[] = [];
-  class2Alcohol.forEach((item : any) => class2Alcoholaverage.push(+item));
-  const Averageclass2Alcohol = (class2Alcoholaverage.reduce((a: any, b : any) => a + b, 0) / 71).toFixed(2);
+  // const class2Alcoholaverage : (string|number)[] = [];
+  // class2Alcohol.forEach((item : any) => class2Alcoholaverage.push(+item));
+  // const Averageclass2Alcohol = (class2Alcoholaverage.reduce((a: any, b : any) => a + b, 0) / 71).toFixed(2);
 
-  const class3Alcoholaverage : (string|number)[] = [];
-  class3Alcohol.forEach((item : any) => class3Alcoholaverage.push(+item));
-  const Averageclass3Alcohol = (class3Alcoholaverage.reduce((a : any, b : any) => a + b, 0) / 48).toFixed(2);
+  // const class3Alcoholaverage : (string|number)[] = [];
+  // class3Alcohol.forEach((item : any) => class3Alcoholaverage.push(+item));
+  // const Averageclass3Alcohol = (class3Alcoholaverage.reduce((a : any, b : any) => a + b, 0) / 48).toFixed(2);
 
   // for (var i = 0; i <= 59; i++) {
   //   malicAcid[i] = Average1;
@@ -72,7 +72,7 @@ const Chart = ({ data}: any) => {
     xAxis: {
       type: "category",
       name: "alcohol",
-      data: [Averageclass1Alcohol,Averageclass2Alcohol,Averageclass3Alcohol],
+      data: ["class 1","class 2","class 3"],
     },
     yAxis: {
       type: "value",
